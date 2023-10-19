@@ -4,7 +4,6 @@ use sdl2::event::Event;
 use sdl2::keyboard::Keycode;
 use sdl2::pixels::Color;
 use sdl2::rect::Rect;
-use sdl2::ttf::Font;
 use std::time::Duration;
 
 use rand::Rng;
@@ -161,16 +160,10 @@ fn main() {
 
     let borders = Borders { w: 800, h: 600 };
 
-    let ttf_context = sdl2::ttf::init().map_err(|e| e.to_string()).unwrap();
-    let mut font = ttf_context
-        .load_font("fonts/OpenSans-VariableFont_wdth,wght.ttf", 128)
-        .unwrap();
-    // font.set_style(sdl2::ttf::FontStyle::BOLD);
-
-    game(window, sdl, font, borders)
+    game(window, sdl, borders)
 }
 
-fn game(window: Window, sdl: Sdl, font: Font, borders: Borders) {
+fn game(window: Window, sdl: Sdl, borders: Borders) {
     let mut snake = Snake::new(Position { x: 0, y: 0 }, borders);
     let mut apple = Apple::new(borders);
 
